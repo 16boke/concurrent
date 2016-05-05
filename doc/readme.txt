@@ -1,0 +1,12 @@
+本项目是为了学习Java的util.concurrent并发包
+一、创建线程的两种传统方式
+1、在Thread子类覆盖run方法
+2、在Thread对象的Runnable对象的run方法
+查看Thread类的run方法源码，可以看到其实这两种方式都是在调用Thread类的run方法，
+如果Thread类的run方法没有被覆盖，并有为该Thread对象设置了一个Runnable对象，该run方法会调用 Runnable对象的run方法
+
+多线程机制会提高程序的运行效率吗？不可以
+
+定时器的应用
+Time类
+TimeTask类
