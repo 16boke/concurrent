@@ -31,7 +31,7 @@ public class ThreadTest {
 		});
 		thread2.start();
 		
-		//运行结果为thread
+		//杩愯缁撴灉涓簍hread
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
