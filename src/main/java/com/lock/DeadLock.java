@@ -1,6 +1,5 @@
 package com.lock;
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -27,7 +26,7 @@ class DLock {
 	 */
 	public void add() {
 		try {
-			//lock.tryLock(1,TimeUnit.MILLISECONDS)
+			// lock.tryLock(1,TimeUnit.MILLISECONDS)
 			if (lock.tryLock()) {
 				try {
 					System.out.println(Thread.currentThread().getName() + " 得到了锁");
