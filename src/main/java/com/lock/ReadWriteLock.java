@@ -18,14 +18,18 @@ public class ReadWriteLock {
 			Thread thread = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					readWrite.get();
+					while(true){
+						readWrite.get();
+					}
 				}
 			});
 			thread.start();
 			Thread thread1 = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					readWrite.put();
+					while(true){
+						readWrite.put(new Random().nextInt(1000));
+					}
 				}
 			});
 			thread1.start();
@@ -33,22 +37,30 @@ public class ReadWriteLock {
 	}
 }
 class ReadWrite{
+	private Object data = null;//共享数据，只能有一个线程写，可以有多个线程同时读取
 	private ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
 	public void get(){
 		rwl.readLock().lock();
 		try{
-			for(int i=0;i<100;i++)
-				System.out.println(Thread.currentThread().getName()+", read i = "+i);
+			System.out.println(Thread.currentThread().getName()+" be ready to read data!");
+			Thread.sleep((long)(Math.random()*1000));
+			System.out.println(Thread.currentThread().getName()+" have read data:"+data);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}finally{
 			rwl.readLock().unlock();
 		}
 	}
-	
-	public void put(){
+
+	public void put(Object data){
 		rwl.writeLock().lock();
 		try{
-			for(int i=0;i<100;i++)
-				System.out.println(Thread.currentThread().getName()+",write i="+i+",value = "+new Random().nextInt());
+			System.out.println(Thread.currentThread().getName()+" be ready to write data!");
+			Thread.sleep((long)(Math.random()*1000));
+			this.data=data;
+			System.out.println(Thread.currentThread().getName()+" have write data:"+data);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}finally{
 			rwl.writeLock().unlock();
 		}
