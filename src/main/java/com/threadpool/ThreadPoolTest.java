@@ -13,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolTest {
 	public static void main(String[] args) {
 		// 创建固定大小的线程池
-		// ExecutorService threadPool = Executors.newFixedThreadPool(3);
+		ExecutorService threadPool = Executors.newFixedThreadPool(3);
 		// 创建缓存线程池
 		// ExecutorService threadPool = Executors.newCachedThreadPool();
 		// 创建单一线程池（实现线程死掉后重新创建一个新的线程）
-		ExecutorService threadPool = Executors.newSingleThreadExecutor();
+		//ExecutorService threadPool = Executors.newSingleThreadExecutor();
 		for (int i = 1; i <= 10; i++) {
 			final int task = i;
 			threadPool.execute(new Runnable() {
@@ -38,12 +38,12 @@ public class ThreadPoolTest {
 		threadPool.shutdown();
 
 		//固定频率定时任务
-		Executors.newScheduledThreadPool(3).scheduleAtFixedRate(new Runnable() {
+		/*Executors.newScheduledThreadPool(3).scheduleAtFixedRate(new Runnable() {
 
 			@Override
 			public void run() {
 				System.out.println("schedule threadpool...");
 			}
-		}, 5, 2, TimeUnit.SECONDS);
+		}, 5, 2, TimeUnit.SECONDS);*/
 	}
 }
