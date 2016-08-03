@@ -32,5 +32,6 @@ public class SemaphoreTest {
 			};
 			service.execute(runnable);
 		}
+		service.shutdown();
 	}
 }
